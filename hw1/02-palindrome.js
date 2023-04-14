@@ -6,8 +6,8 @@ function handleInput(event) {
   const input = event.target.value;
   const resultDiv = document.getElementById('result');
 
-  // isNaN doesn't work on Firefox if incorrect chars are entered.
-  // this approach was suggested by Prof. Paun
+  /* isNaN doesn't work on Firefox if incorrect chars are entered.
+     this approach was suggested by Prof. Paun */
   if (input.length === 0 || isNaN(input)) {
     resultDiv.textContent = 'Invalid number. Contains non-numeric characters.';
     resultDiv.classList.remove('text-success');
@@ -27,8 +27,8 @@ function handleInput(event) {
   }
 }
 
-// this function could probably be simplified with a function approach
-// as seen online, but this works :)
+/* this function could probably be simplified with a function approach
+   as seen online, but this works :) */s
 function isPalindrome(input) {
   let reversedInput = '';
   for (i = input.length - 1; i >= 0; i--) {
