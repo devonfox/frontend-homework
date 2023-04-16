@@ -3,31 +3,32 @@ const input = document.querySelector("input");
 input.addEventListener("keydown", handleKeyDown);
 
 function handleKeyDown(event) {
-  const inputString = event.target.value.trim();
   if (event.key == "Enter") {
-    if (inputString !== "") {
-      const ipsum = document.getElementById("ipsum");
+    const inputString = event.target.value.trim();
+    const ipsum = document.getElementById("ipsum");
 
-      const search = ipsum.textContent.split(/\s+/);
+    /* 
+       found this cool regex "\b" to find word boundaries,
+       instead of just splitting on spaces 
+    */
+    const words = ipsum.textContent.split(/\b/);
 
-      // Functional methods are so cool!
-      const highlighted = search.map((check) => {
-        if (check === inputString) {
-          // Doesn't quite match style. Look into bootstrap colors.
-          return `<text style="background-color: #ffff00">${check}</text>`;
-        }
-        return check;
-      });
+    if (inputString === "") {
+      // empty string as input to "clear" highlights
+      ipsum.innerHTML = words.join("");
+    } else {
+      // maps are great, using to highlight matching words
+      ipsum.innerHTML = words
+        .map((word) => {
+          // using regex to only highlight word, and no special chars
+          const stripped = word.replace(/^[^a-zA-Z]+|[^a-zA-Z]+$/g, "");
 
-      ipsum.innerHTML = highlighted.join(" ");
-    }
-    else {
-        const ipsum = document.getElementById("ipsum");
-        const search = ipsum.textContent.split(/\s+/);
-        const highlighted = search.map((check) => {
-            return check;
-          });
-          ipsum.innerHTML = highlighted.join(" ");
+          // ternary expression to return styled highlighted word or just the word
+          return stripped === inputString
+            ? `<text style="background-color: #ffff00">${word}</text>`
+            : word;
+        })
+        .join("");
     }
   }
 }
