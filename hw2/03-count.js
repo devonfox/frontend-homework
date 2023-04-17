@@ -1,11 +1,11 @@
-const input = document.querySelector("input");
+const input = document.querySelector('input');
 
-input.addEventListener("keydown", handleKeyDown);
+input.addEventListener('keydown', handleKeyDown);
 
 function handleKeyDown(event) {
-  if (event.key == "Enter") {
+  if (event.key == 'Enter') {
     const inputString = event.target.value.trim();
-    const ipsum = document.getElementById("ipsum");
+    const ipsum = document.getElementById('ipsum');
 
     /* 
        found this cool regex "\b" to find word boundaries,
@@ -13,22 +13,22 @@ function handleKeyDown(event) {
     */
     const words = ipsum.textContent.split(/\b/);
 
-    if (inputString === "") {
+    if (inputString === '') {
       // empty string as input to "clear" highlights
-      ipsum.innerHTML = words.join("");
+      ipsum.innerHTML = words.join('');
     } else {
       // maps are great, using to highlight matching words
       ipsum.innerHTML = words
         .map((word) => {
           // using regex to only highlight word, and no special chars
-          const stripped = word.replace(/^[^a-zA-Z]+|[^a-zA-Z]+$/g, "");
+          const stripped = word.replace(/^[^a-zA-Z]+|[^a-zA-Z]+$/g, '');
 
           // ternary expression to return styled highlighted word or just the word
           return stripped === inputString
             ? `<text style="background-color: #ffff00">${word}</text>`
             : word;
         })
-        .join("");
+        .join('');
     }
   }
 }
