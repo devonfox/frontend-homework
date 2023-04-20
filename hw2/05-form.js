@@ -15,15 +15,15 @@ function handleSubmit(event) {
     console.warn('You must enter some data to submit this form');
   } else {
     console.group('========= Form Submission =========');
-    name.value
-      ? console.log('Name: ', name.value)
-      : console.log('Name: ', noSubmission);
-    email.value
-      ? console.log('Email: ', email.value)
-      : console.log('Email: ', noSubmission);
-    registration.value
-      ? console.log('Registration: ', registration.value)
-      : console.log('Registration: ', noSubmission);
+
+    console.log('Name: ', name.value ? name.value : noSubmission);
+    console.log('Email: ', email.value ? email.value : noSubmission);
+
+    if (registration.value && registration.value != 'Choose an Option') {
+      console.log('Registration: ', registration.value);
+    } else {
+      console.log('Registration: ', noSubmission);
+    }
 
     let experience = new String();
 
@@ -35,6 +35,7 @@ function handleSubmit(event) {
     }
 
     if (experience.length > 0) {
+      // this trims any whitespace AND the leftover comma
       experience = experience.trim().slice(0, -1);
       console.log('Previous Classes:', experience);
     } else {
