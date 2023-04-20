@@ -3,19 +3,49 @@ const form = document.getElementById('form-exercise');
 form.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
-  let name = document.querySelector("#name");
-  let email = document.querySelector("#email");;
-  let date = document.querySelector("#date");
-  let nosub = "no submission";
+  const name = document.getElementById('name');
+  const email = document.getElementById('email');
+  const registration = document.getElementById('registration');
+  const previousClasses = document.getElementById('boxes');
+  const checkboxes = previousClasses.querySelectorAll('input[type="checkbox"]');
+  const anythingElse = document.getElementById('anything-else');
+  const noSubmission = 'no submission';
 
   if (!name.value && !email.value) {
-    console.warn("You must enter some data to submit this form");
+    console.warn('You must enter some data to submit this form');
   } else {
-    console.group("========= Form Submission =========");
-    name.value ? console.log("Username: ", name.value) : console.log("Username: " + nosub);
-    email.value ? console.log("Email: ", email.value) : console.log("Email: " + nosub);
+    console.group('========= Form Submission =========');
+    name.value
+      ? console.log('Name: ', name.value)
+      : console.log('Name: ', noSubmission);
+    email.value
+      ? console.log('Email: ', email.value)
+      : console.log('Email: ', noSubmission);
+    registration.value
+      ? console.log('Registration: ', registration.value)
+      : console.log('Registration: ', noSubmission);
+
+    let experience = new String();
+
+    for (let i = 0; i < checkboxes.length; i++) {
+      const checkbox = checkboxes[i];
+      if (checkbox.checked) {
+        experience += checkbox.value + ', ';
+      }
     }
 
-    console.groupEnd();
-    event.preventDefault();
+    if (experience.length > 0) {
+      experience = experience.trim().slice(0, -1);
+      console.log('Previous Classes:', experience);
+    } else {
+      console.log('Previous Classes:', noSubmission);
+    }
+
+    anythingElse.value
+      ? console.log('Anything Else: ', anythingElse.value)
+      : console.log('Anything Else: ', noSubmission);
   }
+
+  console.groupEnd();
+  event.preventDefault();
+}
