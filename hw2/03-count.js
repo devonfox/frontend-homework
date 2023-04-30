@@ -3,7 +3,7 @@ const input = document.querySelector('input');
 input.addEventListener('keydown', handleKeyDown);
 
 function handleKeyDown(event) {
-  if (event.key == 'Enter') {
+  if (event.key === 'Enter') {
     const inputString = event.target.value.trim();
     const ipsum = document.getElementById('ipsum');
 
