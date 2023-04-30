@@ -4,7 +4,7 @@ let buttonState = false;
 
 addEventListener('load', () => {
   // loading random background color on page load
-  randomColor();
+  setRandomBackgroundColor();
 });
 
 // creating a setInterval id per MDN docs
@@ -22,20 +22,24 @@ button.addEventListener('click', (event) => {
   /* if nothing set, set interval to 3 seconds, and
        multiply value in input by 1000 (for milliseconds) */
   if (buttonState) {
-    let intervalAmount = interval.value == '' ? 3000 : interval.value * 1000;
-    randomColor();
-    id = setInterval(randomColor, intervalAmount);
+    let intervalAmount = interval.value === '' ? 3000 : interval.value * 1000;
+    changeColor();
+    id = setInterval(changeColor, intervalAmount);
   } else {
     // clearing setInterval calls
     clearInterval(id);
   }
 });
 
-const randomColor = function determineRandomBackgroundColor() {
+const changeColor = function setRandomBackgroundColor() {
   // Using hsla, and dimming alpha value per instruction pdf
-  document.body.style.backgroundColor = `hsla(${Math.floor(
+  document.body.style.backgroundColor = getRandomColor();
+};
+
+function getRandomColor() {
+  return `hsla(${Math.floor(
     Math.random() * 360,
   )}, ${Math.floor(Math.random() * 50) + 20}%, ${
     Math.floor(Math.random() * 50) + 20
   }% ,${Math.random() * 0.8})`;
-};
+}
