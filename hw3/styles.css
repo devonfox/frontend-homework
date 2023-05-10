@@ -17,3 +17,40 @@ h1 {
   border-radius: 0.8rem;
   background-color: var(--white);
 }
+
+.grid-row > div {
+  border: 1px solid red;
+}
+
+#thrones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (min-width: 768px) {
+  #thrones {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+
+.portrait {
+  width: 160px;;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card { 
+  background-color: transparent;
+}
+
+.card:hover .card-title, .card:hover .card-text {
+  color: white;
+}
+
+.card:hover {
+  background-color: #003a53;
+}
+
+
+
