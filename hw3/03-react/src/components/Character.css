@@ -1,0 +1,10 @@
+.portrait {
+  width: 12rem;
+  height:14rem;
+  object-fit: cover;
+}
+
+.card {
+  width: 12rem;
+  height: 14rem;
+}
