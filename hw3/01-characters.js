@@ -32,7 +32,7 @@ function createCard(character) {
 
   const image = document.createElement('img');
   image.src = character.image;
-  image.alt = character.name;
+  image.alt = `An image of ${character.name} ${character.title}`;
   image.classList.add('card-img-top', 'portrait', 'mx-auto', 'mt-4');
   card.appendChild(image);
 
