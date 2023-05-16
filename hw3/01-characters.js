@@ -2,18 +2,21 @@ const url = 'https://thronesapi.com/api/v2/Characters';
 const section = document.getElementById('thrones');
 
 fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    const characters = data.map(character => ({
+  .then((response) => response.json())
+  .then((data) => {
+    const characters = data.map((character) => ({
       image: character.imageUrl,
       name: character.fullName,
-      title: character.title
+      title: character.title,
     }));
     addCards(characters);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
   });
 
 function addCards(characters) {
-  characters.forEach(character => {
+  characters.forEach((character) => {
     const card = createCard(character);
     section.appendChild(card);
   });
@@ -47,7 +50,7 @@ function createCard(character) {
   cardBody.appendChild(title);
 
   const cardHighlight = document.createElement('div');
-  cardHighlight.classList.add('my-2')
+  cardHighlight.classList.add('my-2');
   cardHighlight.appendChild(cardBody);
 
   card.appendChild(cardHighlight);
