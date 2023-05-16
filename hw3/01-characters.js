@@ -15,14 +15,14 @@ fetch(url)
     console.error('Error:', error);
   });
 
-function addCards(characters) {
+const addCards = function addCardsToFlexContainer(characters) {
   characters.forEach((character) => {
     const card = createCard(character);
     section.appendChild(card);
   });
 }
 
-function createCard(character) {
+const createCard = function createCharacterCard(character) {
   const card = document.createElement('div');
   card.classList.add('card', 'text-center', 'border-0');
 
