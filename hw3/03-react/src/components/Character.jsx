@@ -1,4 +1,3 @@
-import React from 'react';
 import './Character.css';
 
 // custom component for a character card
